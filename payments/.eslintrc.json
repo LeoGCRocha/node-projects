@@ -16,6 +16,7 @@
         "no-param-reassign": "off",
         "semi": ["error", "never"],
         "camelcase": 1,
+        "consistent-return": "off",
         "no-unused-vars": [
             "error",
             {

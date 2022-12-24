@@ -1,17 +1,9 @@
 import { Router } from 'express'
+import UserController from '../controllers/UserController'
+import verifyToken from './verifyToken'
 
 const routes = Router()
 
-routes.get('/users', (req, res) => {
-  res.status(200).json({
-    ok: true,
-  })
-})
-
-routes.post('/users', (req, res) => {
-  res.status(200).json({
-    ok: true,
-  })
-})
+routes.put('/user/:id', verifyToken, UserController.update)
 
 export default routes

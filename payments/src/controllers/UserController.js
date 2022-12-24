@@ -26,6 +26,22 @@ class UserController {
       })
     }
   }
+
+  async update(req, res) {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(req.params.id, {
+        $set: req.body,
+      }, {
+        new: true,
+      })
+
+      res.status(200).json(updatedUser)
+    } catch (err) {
+      res.status(500).json({
+        error: err,
+      })
+    }
+  }
 }
 
 export default new UserController()

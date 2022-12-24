@@ -35,7 +35,6 @@ UserSchema.pre('save', async function (next) {
     this.password = hash
     return next()
   } catch (err) {
-    console.log(err)
     return next(err)
   }
 })
