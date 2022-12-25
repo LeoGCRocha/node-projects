@@ -1,8 +1,11 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import CORS from 'cors'
+import path from 'path'
 import userRoutes from './routes/user'
 import authRoutes from './routes/auth'
+import productRoutes from './routes/product'
 
 const API = '/api/v1/'
 
@@ -25,12 +28,15 @@ class App {
   }
 
   middlewares() {
+    this.server.use(CORS())
+    this.server.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')))
     this.server.use(express.json())
   }
 
   routes() {
     this.server.use(API, authRoutes)
     this.server.use(API, userRoutes)
+    this.server.use(API, productRoutes)
   }
 }
 

@@ -35,7 +35,89 @@ class UserController {
         new: true,
       })
 
-      res.status(200).json(updatedUser)
+      return res.status(200).json(updatedUser)
+    } catch (err) {
+      return res.status(500).json({
+        error: err,
+      })
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      await User.findByIdAndDelete(req.params.id)
+
+      return res.status(200).json('User has been deleted')
+    } catch (err) {
+      return res.status(500).json({
+        error: err,
+      })
+    }
+  }
+
+  async index(req, res) {
+    try {
+      const user = await User.findById(req.params.id)
+
+      // eslint-disable-next-line no-unused-vars, no-underscore-dangle
+      const { password, ...userWithoutPassowrd } = user._doc
+
+      return res.status(200).json(userWithoutPassowrd)
+    } catch (err) {
+      return res.status(500).json({
+        error: err,
+      })
+    }
+  }
+
+  async findAll(req, res) {
+    const query = req.params.new
+
+    try {
+      const users = query ? await User.find().sort({ _id: -1 }).limit(5) : await User.find()
+
+      users.forEach((user, index) => {
+        // eslint-disable-next-line no-unused-vars, no-underscore-dangle
+        const { password, ...userWithoutPassowrd } = user._doc
+
+        users[index] = userWithoutPassowrd
+      })
+
+      return res.status(200).json(users)
+    } catch (err) {
+      return res.status(500).json({
+        error: err,
+      })
+    }
+  }
+
+  async stats(req, res) {
+    const date = new Date()
+    const lastYear = new Date(date.setFullYear() - 1)
+
+    try {
+      const data = await User.aggregate([
+        {
+          $match: {
+            createdAt: {
+              $gte: lastYear,
+            },
+          },
+        },
+        {
+          $project: {
+            month: { $month: '$createdAt' },
+          },
+        },
+        {
+          $group: {
+            _id: '$month',
+            total: { $sum: 1 },
+          },
+        },
+      ])
+
+      res.status(200).json(data)
     } catch (err) {
       res.status(500).json({
         error: err,

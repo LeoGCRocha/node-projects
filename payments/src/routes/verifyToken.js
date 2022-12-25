@@ -35,4 +35,16 @@ const verifyTokenAndAuthorization = (req, res, next) => {
   })
 }
 
-export default verifyTokenAndAuthorization
+const verifyTokenAndAdmin = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.user.isAdmin) {
+      next()
+    } else {
+      return res.status(401).json({
+        error: 'User unauthorized',
+      })
+    }
+  })
+}
+
+export default { verifyTokenAndAdmin, verifyTokenAndAuthorization }
