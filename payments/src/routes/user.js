@@ -9,6 +9,5 @@ routes.delete('/user/:id', Token.verifyTokenAndAdmin, UserController.delete)
 routes.get('/user/:id', Token.verifyTokenAndAdmin, UserController.index)
 routes.get('/users', Token.verifyTokenAndAdmin, UserController.findAll)
 routes.get('/stats', Token.verifyTokenAndAdmin, UserController.stats)
-routes.get('/', UserController.home)
 
 export default routes
