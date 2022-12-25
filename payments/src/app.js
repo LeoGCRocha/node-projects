@@ -8,6 +8,7 @@ import authRoutes from './routes/auth'
 import productRoutes from './routes/product'
 import cartRoutes from './routes/cart'
 import orderRoutes from './routes/order'
+import stripeRoutes from './routes/stripe'
 
 const API = '/api/v1/'
 
@@ -31,7 +32,9 @@ class App {
 
   middlewares() {
     this.server.use(CORS())
-    this.server.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')))
+    this.server.set('view engine', 'ejs')
+    this.server.set('views', path.resolve(__dirname, 'views'))
+    this.server.use(express.static(`${__dirname}/views`))
     this.server.use(express.json())
   }
 
@@ -41,6 +44,7 @@ class App {
     this.server.use(API, productRoutes)
     this.server.use(API, cartRoutes)
     this.server.use(API, orderRoutes)
+    this.server.use(API, stripeRoutes)
   }
 }
 
