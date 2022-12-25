@@ -4,11 +4,8 @@ import Token from './verifyToken'
 
 const routes = Router()
 
-// TODO: Finish CRUD to all Cart operations
-// TODO: Finish CRUD to all Order operations
-
-routes.get('/cart', Token.verifyTokenAndAuthorization, CartController.findAll)
-routes.post('/cart', Token.verifyTokenAndAuthorization, CartController.post)
+routes.get('/cart/:id', Token.verifyTokenAndAuthorization, CartController.findByUserId)
+routes.post('/cart/:id', Token.verifyTokenAndAuthorization, CartController.store)
 routes.put('/cart/:id', Token.verifyTokenAndAuthorization, CartController.update)
 routes.delete('/cart/:id', Token.verifyTokenAndAuthorization, CartController.delete)
 

@@ -6,6 +6,8 @@ import path from 'path'
 import userRoutes from './routes/user'
 import authRoutes from './routes/auth'
 import productRoutes from './routes/product'
+import cartRoutes from './routes/cart'
+import orderRoutes from './routes/order'
 
 const API = '/api/v1/'
 
@@ -37,6 +39,8 @@ class App {
     this.server.use(API, authRoutes)
     this.server.use(API, userRoutes)
     this.server.use(API, productRoutes)
+    this.server.use(API, cartRoutes)
+    this.server.use(API, orderRoutes)
   }
 }
 
