@@ -1,0 +1,9 @@
+{
+    "products": [
+        {
+            "name": "Tênis de Corrida",
+            "price": "32",
+            "id": 1
+        }
+    ]
+}
