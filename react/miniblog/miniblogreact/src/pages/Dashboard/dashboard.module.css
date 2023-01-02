@@ -1,0 +1,34 @@
+.dashboard {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dashboard h2 {
+    font-size:  2.2em;
+}
+
+.dashboard p {
+    color: #aaa;
+}
+
+.post_header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+    width: 80%;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.post_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    width: 80%;
+    margin: 0 auto;
+}
