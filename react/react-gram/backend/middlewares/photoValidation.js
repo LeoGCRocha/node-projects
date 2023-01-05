@@ -18,3 +18,11 @@ export function photoValidation() {
         })
     ]
 }
+
+export function commentValidation() {
+    return [
+        body('comment')
+            .isString()
+            .withMessage('Comment is required')
+    ]
+}

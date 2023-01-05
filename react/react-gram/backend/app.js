@@ -2,6 +2,7 @@ import express from 'express'
 import path from 'path'
 import cors from 'cors'
 import router from './routes/Router.js'
+import './config/db.js'
 
 require('dotenv').config()
 
@@ -16,9 +17,6 @@ app.use(cors({
     credentials: true,
     origin: 'http://localhost:3000'
 }))
-
-// DB connection
-import './config/db.js'
 
 // Upload direcotry
 app.use("/uploads", express.static(path.join(__dirname, "uploads")))
