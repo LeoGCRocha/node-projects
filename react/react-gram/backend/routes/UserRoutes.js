@@ -23,6 +23,6 @@ routes.put('/update',
             ImageUpload.single("profileImage"),
             update
         )
-routes.get('/users/:id', getUserById)
+routes.get('/:id', getUserById)
 
 export default routes   

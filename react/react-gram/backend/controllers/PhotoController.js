@@ -14,7 +14,7 @@ const insertPhoto = async (req, res) => {
         image,
         title,
         userId: user._id,
-        userName: user.username
+        userName: user.name
     })
 
     await newPhoto.save()
@@ -79,9 +79,10 @@ const getUserPhotos = async (req, res) => {
 }
 
 const getPhotoById = async(req, res) => {
+    let photo
     try {
         const { id } = req.params
-        const photo = await Photo.findById(id)
+        photo = await Photo.findById(id)
         if (!photo) {
             res.status(404).json({
                 errors: ["Photo not found"]
