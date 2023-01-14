@@ -17,6 +17,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 // Hooks
 import { useAuth } from './hooks/useAuth'
+import Search from './pages/Search/Search';
 
 function App() {
 
@@ -43,6 +44,10 @@ function App() {
             <Route 
               path="/photos/:id"
               element={auth ? <Photo /> : <Navigate to="login"/>}
+            />
+            <Route 
+              path="/search"
+              element={auth ? <Search /> : <Navigate to="/login" />}
             />
           </Routes> 
         </div>

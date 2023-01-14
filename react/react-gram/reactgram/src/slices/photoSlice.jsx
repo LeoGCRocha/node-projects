@@ -135,6 +135,16 @@ export const photoSlice = createSlice({
                 state.success = true
                 state.photos = action.payload
             })
+            .addCase(photoByTitle.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
+            .addCase(photoByTitle.fulfilled, (state, action) => {
+                state.loading = false
+                state.error = null
+                state.success = true
+                state.photos = action.payload
+            })
     }
 })
 
@@ -245,6 +255,15 @@ export const getAllPhotos = createAsyncThunk(
     async(_, thunkAPI) => {
         const token = thunkAPI.getState().auth.user.token
         const data = await photoService.getAllPhotos(token)
+        return data
+    }
+)
+
+export const photoByTitle = createAsyncThunk(
+    'photo/search',
+    async(query, thunkAPI) => {
+        const token = thunkAPI.getState().auth.user.token
+        const data = await photoService.photoByTitle(query, token)
         return data
     }
 )
