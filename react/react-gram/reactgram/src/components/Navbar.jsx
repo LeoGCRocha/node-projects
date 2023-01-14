@@ -9,7 +9,7 @@ import { BsSearch,
 
 // Hooks
 import { useAuth } from '../hooks/useAuth'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logout, reset } from '../slices/authSlice'
